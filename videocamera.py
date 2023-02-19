@@ -10,7 +10,7 @@ from grip import GripPipeline
 pipeline = GripPipeline()
 
 vid = cv2.VideoCapture(0)
-
+#vid = cv2.VideoCapture('trafficvideocropped.MOV')
 
 if (vid.isOpened() == False):
     print("Unable to read camera feed")
@@ -48,15 +48,17 @@ while (True):
         except (ZeroDivisionError):
             self.logger.logMessage("Divide by 0 exception in GRIP Pipeline")
 
-
-        cv2.drawContours(frame, contour_data, -1, (0, 255, 0), 3)
-
+        for contour in contours:
+            approx = cv2.approxPolyDP(contour, 0.01 * cv2.arcLength(contour, True), True)
+            if len(approx) > 25:
+                cv2.drawContours(frame, contour_data, -1, (0, 255, 0), 3)
 
 
 
         # Display the resulting frame
         cv2.imshow('frame', frame)
-
+        if len(contour_data) > 1:
+            playsound('beep-01b.mp3')
 
         # the 'q' button is set as the
         # quitting button
