@@ -13,9 +13,9 @@ class GripPipeline:
         """initializes all values to presets or None if need to be set
         """
 
-        self.__hsv_threshold_hue = [124.96402383708266, 180.0]
-        self.__hsv_threshold_saturation = [92.64388292384662, 255.0]
-        self.__hsv_threshold_value = [188.03957271918978, 255.0]
+        self.__hsv_threshold_hue = [33, 180.0]
+        self.__hsv_threshold_saturation = [150, 255.0]
+        self.__hsv_threshold_value = [150, 200.0]
 
         self.hsv_threshold_output = None
 
@@ -31,7 +31,7 @@ class GripPipeline:
         self.__cv_dilate_src = self.cv_erode_output
         self.__cv_dilate_kernel = None
         self.__cv_dilate_anchor = (-1, -1)
-        self.__cv_dilate_iterations = 38.0
+        self.__cv_dilate_iterations = 3.0
         self.__cv_dilate_bordertype = cv2.BORDER_CONSTANT
         self.__cv_dilate_bordervalue = (-1)
 
